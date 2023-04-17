@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/04/17 14:08:41 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:14:21 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef	struct s_philo
 	struct timeval	t_stp;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	m_count;
-	struct t_philo	*next;
+	struct s_philo	*next;
 }				t_philo;
 
 void	ft_error(char *message);
