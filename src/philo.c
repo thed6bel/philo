@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/03/17 09:26:26 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:56:57 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	ft_philosopher(t_data data)
 	buffer = philo;
 	if (data.nbr_philo >= 1)
 		ft_make_threads(buffer);
-	ft_monit_threads(buffer);
-	ft_exit_and_free(philo);
+	//ft_monit_threads(buffer);
+	//ft_exit_and_free(philo);
 }

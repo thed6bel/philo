@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:36:23 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/03/16 09:23:23 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:43:45 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 		philo_data.time_to_sleep = ft_atoi(argv[4]);
 		if (!ft_ctrl_arg(argv, philo_data))
 			ft_error("Invalide argument\n");
+		//ft_philosopher(philo_data);
 	}
 	else
 		ft_error("Invalid argument\n");
