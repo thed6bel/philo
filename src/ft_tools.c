@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/08 10:26:15 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:12:47 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_error(char *message)
 {
 	write (2, message, ft_strlen(message));
+	exit (0);
 }
 
 long	ft_strlen(const char *str)

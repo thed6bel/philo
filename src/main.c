@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:36:23 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/08 10:26:17 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:15:10 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 		philo_data.time_to_die = ft_atoi(argv[2]);
 		philo_data.time_to_eat = ft_atoi(argv[3]);
 		philo_data.time_to_sleep = ft_atoi(argv[4]);
+		if (argv[5])
+			philo_data.nbr_time_must_eat = ft_atoi(argv[5]);
 		if (!ft_ctrl_arg(argv, philo_data))
 			ft_error("Invalide argument\n");
 		//ft_philosopher(philo_data);
