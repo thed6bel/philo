@@ -6,11 +6,11 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:36:23 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/04/17 14:43:45 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:26:17 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	main(int argc, char **argv)
 {

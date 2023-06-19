@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/04/17 14:14:21 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:04:39 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_data
 	long long	time_to_die;
 	long long	time_to_eat;
 	long long	time_to_sleep;
-	long long	nbr_time_must_eat;//si trop long n.s.m comme nom
+	long long	nbr_time_must_eat;//si trop long n_t_m_e comme nom
 }				t_data;
 
 typedef	struct s_share

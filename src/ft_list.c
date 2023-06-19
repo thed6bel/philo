@@ -6,11 +6,11 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:19:46 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/03/17 11:29:18 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:26:07 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 /*ft_setup_philo()
 {

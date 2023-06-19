@@ -6,11 +6,11 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:15:36 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/03/16 10:27:31 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:00:00 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	ft_ctrl_arg(char **argv, t_data data)
 {
@@ -35,6 +35,7 @@ int	ft_ctrl_arg(char **argv, t_data data)
 		}
 		i++;
 	}
-	ft_philosopher(data);
+	//ft_philosopher(data);
 	return (1);
 }
+

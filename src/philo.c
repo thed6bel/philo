@@ -6,12 +6,12 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/06 13:56:57 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:58:51 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
-
+#include "../include/philo.h"
+/*
 static void	ft_make_threads(t_philo *philo)
 {
 
@@ -39,3 +39,4 @@ void	ft_philosopher(t_data data)
 	//ft_monit_threads(buffer);
 	//ft_exit_and_free(philo);
 }
+*/

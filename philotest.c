@@ -2,7 +2,7 @@
 #include <pthread.h>
 
 // Chaque thread comptera TIMES_TO_COUNT fois
-#define TIMES_TO_COUNT 21000
+#define TIMES_TO_COUNT 9984000
 
 #define NC	"\e[0m"
 #define YELLOW	"\e[33m"

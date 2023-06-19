@@ -6,7 +6,7 @@
 #    By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/04/17 11:29:57 by hucorrei         ###   ########.fr        #
+#    Updated: 2023/06/19 15:05:26 by hucorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CC		= gcc
 #CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 #flags pendant test:
 CFLAGS	= -pthread -fsanitize=thread -g
+OBJ_DIR			= .objs
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -29,10 +30,11 @@ SRCS	= 	./src/main.c \
 			./src/philo.c \
 			./src/ft_tools.c \
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-%.c%.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	@${CC} ${FLAGS} -c $< -o $@ 
 
 ################################################################################
 #                                  Makefile  objs                              #
@@ -54,20 +56,19 @@ ${NAME}:	${OBJS}
 all:	${NAME}
 
 clean:
-		@${RM} ${OBJS}
-		@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
-		@echo "$(RED)N'OUBLIE PAS DE CHANGER LES FLAGS!!! $(CLR_RMV)"
+			@${RM} -r $(OBJ_DIR)
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
-fclean:	clean
-		@${RM} ${NAME}
-		@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
-		@echo "$(RED)N'OUBLIE PAS DE CHANGER LES FLAGS!!! $(CLR_RMV)"
+fclean:		clean
+			@ ${RM} ${NAME}
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
-re:		fclean all
+re:			fclean all
 
 git:
 		git add .
 		git commit -m "$m"
 		git push
+		@ echo "$(BLUE)ALL is on your $(CYAN)GIT $(CLR_RMV)✔️"
 
 .PHONY:	all clean fclean re git
