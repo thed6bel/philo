@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/08 10:04:39 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:32:22 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <sys/time.h>
+# include <stdlib.h>
 
 typedef struct s_data
 {
@@ -39,6 +40,8 @@ typedef	struct s_share
 
 typedef	struct s_philo
 {
+	int				balise;
+	int				last_eat;
 	int				id;
 	unsigned int	count;
 	t_share			*share;
