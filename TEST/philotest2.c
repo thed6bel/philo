@@ -57,6 +57,6 @@ int main()
         pthread_join(philosophers[i], NULL);
         pthread_mutex_destroy(&forks[i]);
     }
-    
+
     return 0;
 }

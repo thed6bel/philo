@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/19 17:46:41 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:30:06 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ void	ft_philosopher(t_data data)
 	if (data.nbr_philo > 1)
 		ft_make_threads(buffer);
 	//ft_monit_threads(buffer);
-	//ft_exit_and_free(philo);
+	ft_exit_and_free(philo);
 }
-

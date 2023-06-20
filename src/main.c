@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:36:23 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/19 17:21:54 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:10:11 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 			philo_data.nbr_time_must_eat = -1;
 		if (!ft_ctrl_arg(argv, philo_data))
 			ft_error("Invalide argument\n");
-		else
-			ft_philosopher(philo_data);
+		//else
+			//ft_philosopher(philo_data);
 	}
 	else
 		ft_error("Invalid argument\n");
