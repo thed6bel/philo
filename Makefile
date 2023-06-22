@@ -6,7 +6,7 @@
 #    By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/06/20 10:10:37 by hucorrei         ###   ########.fr        #
+#    Updated: 2023/06/22 13:57:27 by hucorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,10 @@ SRCS	= 	./src/main.c \
 			./src/ft_ctrl_arg.c \
 			./src/philo.c \
 			./src/ft_tools.c \
+			./src/ft_monit.c \
+			./src/ft_routine.c \
+			./src/ft_setups.c \
+			./src/ft_list.c \
 
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

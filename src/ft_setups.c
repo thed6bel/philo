@@ -6,12 +6,12 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:08:34 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/22 10:54:44 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:55:48 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-/*
+
 void *ft_setup_philo(long long nbr_philo, t_share share)
 {
 	
@@ -37,4 +37,3 @@ t_share	*ft_setup_share(t_data data)
 		//protection
 	return (n);
 }
-*/
