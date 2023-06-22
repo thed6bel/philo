@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/20 14:25:31 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:46:43 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ long	ft_strlen(const char *str)
 	return (i);
 }
 
-long	ft_atoi(const char *nptr)
+int	ft_atoi2(const char *nptr, long long int *n)
 {
-	int		i;
-	long	signe;
-	long	nbr;
+	int						i;
+	int						signe;
+	unsigned long long int	nbr;
 
 	i = 0;
 	signe = 1;
 	nbr = 0;
 	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t'
-		|| nptr[i] == '\r' || nptr[i] == '\v' || nptr[i] == '\f' )
+		|| nptr[i] == '\r' || nptr[i] == '\v' || nptr[i] == '\f')
 		i++;
 	while (nptr[i] == '-' || nptr[i] == '+')
 	{
@@ -50,5 +50,9 @@ long	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		nbr = nptr[i++] - '0' + (nbr * 10);
-	return (signe * nbr);
+	if (((nbr > 9223372036854775808ULL) && signe == -1) || \
+		((nbr > 9223372036854775807) && signe == 1))
+		return (0);
+	*n = (long long int)(nbr * signe);
+	return (1);
 }

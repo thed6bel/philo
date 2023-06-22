@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/19 17:32:22 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:16:07 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 typedef struct s_data
 {
-	int			nbr_philo;
+	long long	nbr_philo;
 	long long	time_to_die;
 	long long	time_to_eat;
 	long long	time_to_sleep;
-	long long	nbr_time_must_eat;//si trop long n_t_m_e comme nom
+	long long	nbr_time_must_eat;
 }				t_data;
 
 typedef	struct s_share
@@ -52,13 +52,28 @@ typedef	struct s_philo
 	struct s_philo	*next;
 }				t_philo;
 
-void	ft_error(char *message);
-long	ft_strlen(const char *str);
-long	ft_atoi(const char *nptr);
-int 	ft_ctrl_arg(char **argv, t_data data);
-void	ft_philosopher(t_data philo);
-t_share	*ft_setup_share(t_data data);
+// ft_ctrl_arg.c
+int		ft_ctrl_arg(char **argv, t_data data);
+
+// ft_list.c
 t_philo *ft_list_philo(int n, t_share *share);
 
+ // ft_routine.c
+void	eating(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
+void	*ft_routine(void *arg);
+
+// ft_setup.c
+void	*ft_setup_share(t_data data);
+void	*ft_setup_philo(long long nbr_philo, t_share share);
+
+// ft_tools.c
+void	ft_error(char *message);
+long	ft_strlen(const char *str);
+int		ft_atoi2(const char *nptr, long long int *n);
+
+// philo.c
+void	ft_philosopher(t_data philo);
 
 # endif

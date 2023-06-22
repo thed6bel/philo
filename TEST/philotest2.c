@@ -21,6 +21,7 @@ void *philosopher(void *arg)
         
         pthread_mutex_unlock(&forks[right_fork]);
         pthread_mutex_unlock(&forks[left_fork]);
+        printf("philo %d lache les fourchette\n", philosopher_id +1);
     }
     // Philosophes pairs
     else {
@@ -31,9 +32,10 @@ void *philosopher(void *arg)
         
         pthread_mutex_unlock(&forks[left_fork]);
         pthread_mutex_unlock(&forks[right_fork]);
+        printf("philo %d lache les fourchette\n", philosopher_id +1);
     }
     
-    // Réflexion
+    printf("think philo %d\n", philosopher_id +1);
     
     pthread_exit(NULL);
 }
