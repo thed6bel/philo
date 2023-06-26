@@ -3,15 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:27:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/22 13:54:30 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:31:47 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-/*
+
+t_philo	*ft_check_value(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (philo->balise != 1 && protect_check(philo))
+	{
+		pthread_mutex_lock(philo->share->dead);
+		i = get_time(philo->t_stp);
+		if ((i - philo->last_eat) > philo->share->data.time_to_die + 1)
+		{
+			*(philo->share->is_dead) = 1;
+			pthread_mutex_lock(philo->share->print_protect);
+			printf("%d philo %d is dead\n", get_time(philo->t_stp), philo->id);
+			pthread_mutex_unlock(philo->share->print_protect);
+		}
+		pthread_mutex_unlock(philo->share->dead);
+		philo = philo->next;
+	}
+	return (philo);
+}
+
+int	ft_monitoring_eat(t_philo *philo)
+{
+	if (philo->share->data.nbr_time_must_eat < 0)
+		return (0);
+	while (philo->balise != 1)
+	{
+		pthread_mutex_lock(&philo->count_protect);
+		if (philo->count < philo->share->data.nbr_time_must_eat)
+		{
+			pthread_mutex_unlock(&philo->count_protect);
+			return (0);
+		}
+		pthread_mutex_unlock(&philo->count_protect);
+		philo = philo->next;
+	}
+	return (1);
+}
+
 void	ft_monitoring(t_philo *philo)
 {
 	t_philo	*start;
@@ -19,21 +59,19 @@ void	ft_monitoring(t_philo *philo)
 	start = philo;
 	while (protect_check(philo))
 	{
-		if (monitoring_eat(start))
+		if (ft_monitoring_eat(start))
 		{
 			pthread_mutex_lock(philo->share->dead);
 			*(start->share->is_dead) = 1;
 			pthread_mutex_unlock(philo->share->dead);
-			usleep(2000);
-			pthread_mutex_lock(philo->share->protect);
-			printf("END\n");
-			pthread_mutex_unlock(philo->share->protect);
+			usleep(2000);//?? utile
+			pthread_mutex_lock(philo->share->print_protect);
+			printf("philosopher %d is dead\n", philo->id);
+			pthread_mutex_unlock(philo->share->print_protect);
+			//break;
 		}
 		philo = ft_check_value(philo);
 		if (philo->balise == 1)
 			philo = philo->next;
 	}
 }
-
-
-*/
