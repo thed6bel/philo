@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 13:53:40 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:08:36 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static void	ft_exit_and_free(t_philo *philo)
 			pthread_join(buffer->thread, NULL);
 		buffer = buffer->next;
 	}
-	pthread_mutex_destroy(philo->share->print_protect);
-	pthread_mutex_destroy(philo->share->dead);
+	if (pthread_mutex_destroy(philo->share->print_protect) != 0)
+		ft_error("Error destroy mutex");
+	if (pthread_mutex_destroy(philo->share->dead) != 0)
+		ft_error("Error destroy mutex");
 	free(philo->share->is_dead);
 	free(philo->share->print_protect);
 	free(philo->share->dead);
@@ -45,8 +47,10 @@ static void	ft_exit_and_free(t_philo *philo)
 	while (philo->balise != 1)
 	{
 		buffer = philo->next;
-		pthread_mutex_destroy(&philo->fork);
-		pthread_mutex_destroy(&philo->count_protect);
+		if (pthread_mutex_destroy(&philo->fork) != 0)
+			ft_error("Error destroy mutex");
+		if (pthread_mutex_destroy(&philo->count_protect) != 0)
+			ft_error("Error destroy mutex");
 		free(philo);
 		philo = buffer;
 	}
