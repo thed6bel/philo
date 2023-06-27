@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/06/27 10:42:12 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:49:19 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	ft_lock(t_philo *philo)
 	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_print(philo, "%d philo %d has taken a fork\n");
+		ft_protect_print(philo, "%d %d has taken a fork\n");
 		if (philo->next->balise != 1)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_print(philo, "%d philo %d has taken a fork\n");
+		ft_protect_print(philo, "%d %d has taken a fork\n");
 	}
 	else
 	{
@@ -52,9 +52,9 @@ void	ft_lock(t_philo *philo)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_print(philo, "%d philo %d has taken a fork\n");
+		ft_protect_print(philo, "%d %d has taken a fork\n");
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_print(philo, "%d philo %d has taken a fork\n");
+		ft_protect_print(philo, "%d %d has taken a fork\n");
 	}
 }
 

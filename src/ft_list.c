@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:19:46 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 09:30:49 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:55:39 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,28 @@ void	ft_set_last(t_philo *last, t_philo *first)
 
 t_philo	*ft_list_philo(int n, t_share *share)
 {
-	t_philo			*list;
-	t_philo			*buffer[2];
-	t_philo			*new_philo;
+	t_philo			*philo;
+	t_philo			*buff[2];
 	struct timeval	time;
 	int				i;
 
 	i = 1;
 	if (n <= 0)
 		return (NULL);
-	list = malloc(sizeof(t_philo));
-	if (!list)
-		return (NULL);
-	buffer[0] = list;
-	buffer[1] = list;
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
+		ft_error("Error malloc init\n");
+	buff[0] = philo;
+	buff[1] = philo;
 	gettimeofday(&time, NULL);
-	ft_setup_philo(list, i, time, share);
+	ft_setup_philo(philo, i, time, share);
 	while (i <= n)
 	{
-		new_philo = malloc(sizeof(t_philo));
-		if (!new_philo)
-			return (NULL);
-		buffer[1]->next = new_philo;
-		buffer[1] = new_philo;
-		ft_setup_philo(new_philo, ++i, time, share);
+		philo = malloc(sizeof(t_philo));
+		buff[1]->next = philo;
+		buff[1] = philo;
+		ft_setup_philo(buff[1], ++i, time, share);
 	}
-	ft_set_last(list, buffer[0]);
-	return (buffer[0]);
+	ft_set_last(philo, buff[0]);
+	return (buff[0]);
 }

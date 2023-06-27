@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:27:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 10:50:29 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:56:16 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void	ft_monitoring(t_philo *philo)
 			pthread_mutex_lock(philo->share->dead);
 			*(start->share->is_dead) = 1;
 			pthread_mutex_unlock(philo->share->dead);
-			usleep(2000);//?? utile
+			//usleep(2000);//?? utile
 			pthread_mutex_lock(philo->share->print_protect);
-			printf("philosopher %d is dead\n", philo->id);
+			printf("every philosopher have eaten %lld times\n", philo->share->data.nbr_time_must_eat);
 			pthread_mutex_unlock(philo->share->print_protect);
-			//break;
 		}
 		philo = ft_check_value(philo);
 		if (philo->balise == 1)
