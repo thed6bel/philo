@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/23 14:43:23 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 11:16:01 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,31 @@ int		ft_ctrl_arg(char **argv, t_data data);
 
 // ft_list.c
 t_philo	*ft_list_philo(int n, t_share *share);
+void	ft_set_last(t_philo *last, t_philo *first);
 
 // ft_monit.c
 void	ft_monitoring(t_philo *philo);
 
+// ft_mutex.c
+void	ft_unlock(t_philo *philo);
+void	ft_lock(t_philo *philo);
+void	ft_protect_print(t_philo *philo, char *str);
+int		ft_protect_check(t_philo *philo);
+
 // ft_routine.c
-void	eating(t_philo *philo);
-void	sleeping(t_philo *philo);
-void	thinking(t_philo *philo);
+void	ft_eating(t_philo *philo);
+void	ft_sleeping(t_philo *philo);
+void	ft_thinking(t_philo *philo);
 void	*ft_routine(void *arg);
 
 // ft_setup.c
 t_share	*ft_setup_share(t_data data);
-void	*ft_setup_philo(t_philo *philo, int index, struct timeval time, t_shared *share);
+void	*ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s);
 
 // ft_tools.c
 void	ft_error(char *message);
 long	ft_strlen(const char *str);
+int		get_time(struct timeval start);
 int		ft_atoi2(const char *nptr, long long int *n);
 
 // philo.c

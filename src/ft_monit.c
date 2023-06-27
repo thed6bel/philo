@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:27:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/23 15:31:47 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:50:29 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_philo	*ft_check_value(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (philo->balise != 1 && protect_check(philo))
+	while (philo->balise != 1 && ft_protect_check(philo))
 	{
 		pthread_mutex_lock(philo->share->dead);
 		i = get_time(philo->t_stp);
@@ -57,7 +57,7 @@ void	ft_monitoring(t_philo *philo)
 	t_philo	*start;
 
 	start = philo;
-	while (protect_check(philo))
+	while (ft_protect_check(philo))
 	{
 		if (ft_monitoring_eat(start))
 		{

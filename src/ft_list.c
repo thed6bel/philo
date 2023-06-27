@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:19:46 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/23 11:09:15 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/27 09:30:49 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_philo	*ft_list_philo(int n, t_share *share)
 	int				i;
 
 	i = 1;
+	if (n <= 0)
+		return (NULL);
 	list = malloc(sizeof(t_philo));
 	if (!list)
 		return (NULL);

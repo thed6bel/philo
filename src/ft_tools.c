@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/21 14:46:43 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/27 11:31:53 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ long	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+int	get_time(struct timeval start)
+{
+	int				time;
+	struct timeval	end;
+
+	gettimeofday(&end, NULL);
+	time = ((end.tv_sec - start.tv_sec)
+			+ 1e-6 * (end.tv_usec - start.tv_usec)) * 1000;
+	return (time);
 }
 
 int	ft_atoi2(const char *nptr, long long int *n)
@@ -56,3 +67,5 @@ int	ft_atoi2(const char *nptr, long long int *n)
 	*n = (long long int)(nbr * signe);
 	return (1);
 }
+
+
