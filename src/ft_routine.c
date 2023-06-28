@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 14:54:59 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:06:33 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ void	ft_sleeping(t_philo *philo)
 void	ft_thinking(t_philo *philo)
 {
 	ft_protect_print(philo, "%d %d is thinking\n");
-	if (philo->id % 2 != 0 && philo->share->data.time_to_eat >= \
-		philo->share->data.time_to_sleep)
-		// usleep((philo->share->data.time_to_eat - \
-		// 	philo->share->data.time_to_sleep + 1) * 1000);
-		// usleep((philo->share->data.time_to_die - (philo->share->data.time_to_eat + \
-		// 	philo->share->data.time_to_sleep) / 3) * 1000);
-		usleep(1000);
 }
 
 void	*ft_routine(void *arg)
