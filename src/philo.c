@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 10:30:28 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:16:36 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_make_threads(t_philo *philo)
 	while (buffer->balise != 1)
 	{
 		pthread_create(&(buffer->thread), NULL, &ft_routine, buffer);
-		//usleep(100);
+		//usleep(100); arsene a ajouter un delais mais pourquoi?
 		buffer = buffer->next;
 	}
 }
@@ -37,9 +37,9 @@ static void	ft_exit_and_free(t_philo *philo)
 		buffer = buffer->next;
 	}
 	if (pthread_mutex_destroy(philo->share->print_protect) != 0)
-		ft_error("Error destroy mutex");
+		ft_error("Error destroy mutex[ft_exit_and_free1]\n");
 	if (pthread_mutex_destroy(philo->share->dead) != 0)
-		ft_error("Error destroy mutex");
+		ft_error("Error destroy mutex[ft_exit_and_free2]\n");
 	free(philo->share->is_dead);
 	free(philo->share->print_protect);
 	free(philo->share->dead);
@@ -48,9 +48,9 @@ static void	ft_exit_and_free(t_philo *philo)
 	{
 		buffer = philo->next;
 		if (pthread_mutex_destroy(&philo->fork) != 0)
-			ft_error("Error destroy mutex");
+			printf("Error destroy mutex[ft_exit_and_free3]\n");
 		if (pthread_mutex_destroy(&philo->count_protect) != 0)
-			ft_error("Error destroy mutex");
+			printf("Error destroy mutex[ft_exit_and_free4]\n");
 		free(philo);
 		philo = buffer;
 	}
@@ -66,9 +66,9 @@ void	ft_philosopher(t_data data)
 	share = ft_setup_share(data);
 	philo = ft_list_philo(data.nbr_philo, share);
 	if (philo == NULL)
-		ft_error("Error");
+		ft_error("Error\n");
 	buff = philo;
-	if (data.nbr_philo > 1)
+	if (data.nbr_philo >= 1)
 		ft_make_threads(buff);
 	ft_monitoring(buff);
 	ft_exit_and_free(philo);
