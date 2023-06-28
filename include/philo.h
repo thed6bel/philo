@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 10:25:54 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/28 18:48:52 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ int		ft_atoi2(const char *nptr, long long int *n);
 
 // philo.c
 void	ft_philosopher(t_data philo);
+void	ft_exit_and_free(t_philo *philo);
+void	ft_exit_and_free1philo(t_philo *philo);
 
 #endif

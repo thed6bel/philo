@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 11:16:36 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/28 18:58:43 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_make_threads(t_philo *philo)
 	}
 }
 
-static void	ft_exit_and_free(t_philo *philo)
+void	ft_exit_and_free(t_philo *philo)
 {
 	t_philo	*buffer;
 
@@ -55,6 +55,17 @@ static void	ft_exit_and_free(t_philo *philo)
 		philo = buffer;
 	}
 	free(philo);
+}
+
+void	ft_exit_and_free1philo(t_philo *philo)
+{
+	if (pthread_mutex_destroy(&philo->fork) != 0)
+		printf("Error destroy mutex[ft_exit_and_free1philo1]\n");
+	free(philo->share);
+	if (pthread_mutex_destroy(&philo->count_protect) != 0)
+		printf("Error destroy mutex[ft_exit_and_free1philo3]\n");
+	free(philo);
+	exit(0);
 }
 
 void	ft_philosopher(t_data data)

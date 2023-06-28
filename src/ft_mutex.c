@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mutex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/06/28 11:07:13 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/06/28 18:50:34 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	ft_protect_print(t_philo *philo, char *str)
 
 void	ft_lock(t_philo *philo)
 {
+	if (philo->share->data.nbr_philo == 1)
+	{
+		ft_protect_print(philo, "%d %d has taken a fork\n");
+		ft_exit_and_free1philo(philo);
+	}
 	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(&(philo->fork));
