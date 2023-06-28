@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mutex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/06/27 13:49:19 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:27:31 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_unlock(t_philo *philo)
 	if (philo->id % 2 == 0 && philo->next->balise != 1)
 	{
 		pthread_mutex_unlock(&(philo->fork));
-		//usleep(100);//??
+		//usleep(100);
 		pthread_mutex_unlock(&(philo->next->fork));
 	}
 	else if (philo->id % 2 != 0 && philo->next->balise != 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 13:49:28 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:28:29 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_eating(t_philo *philo)
 }
 
 void	ft_sleeping(t_philo *philo)
-{ 
+{
 	ft_protect_print(philo, "%d %d is sleeping\n");
 	if (ft_protect_check(philo))
 		usleep(philo->share->data.time_to_sleep * 1000);
@@ -37,8 +37,10 @@ void	ft_sleeping(t_philo *philo)
 void	ft_thinking(t_philo *philo)
 {
 	ft_protect_print(philo, "%d %d is thinking\n");
-	if (philo->id % 2 != 0 && philo->share->data.time_to_eat >= philo->share->data.time_to_sleep)
-		usleep((philo->share->data.time_to_eat - philo->share->data.time_to_sleep + 1) * 1000);
+	if (philo->id % 2 != 0 && philo->share->data.time_to_eat >= \
+		philo->share->data.time_to_sleep)
+		usleep((philo->share->data.time_to_eat - \
+			philo->share->data.time_to_sleep + 1) * 1000);
 }
 
 void	*ft_routine(void *arg)

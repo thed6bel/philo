@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 11:31:53 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:29:07 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,3 @@ int	ft_atoi2(const char *nptr, long long int *n)
 	*n = (long long int)(nbr * signe);
 	return (1);
 }
-
-

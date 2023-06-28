@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:27:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 13:56:16 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:26:45 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_philo	*ft_check_value(t_philo *philo)
 		{
 			*(philo->share->is_dead) = 1;
 			pthread_mutex_lock(philo->share->print_protect);
-			printf("%d philo %d is dead\n", get_time(philo->t_stp), philo->id);
+			printf("%d %d is dead\n", get_time(philo->t_stp), philo->id);
 			pthread_mutex_unlock(philo->share->print_protect);
 		}
 		pthread_mutex_unlock(philo->share->dead);
@@ -64,9 +64,10 @@ void	ft_monitoring(t_philo *philo)
 			pthread_mutex_lock(philo->share->dead);
 			*(start->share->is_dead) = 1;
 			pthread_mutex_unlock(philo->share->dead);
-			//usleep(2000);//?? utile
+			//usleep(2000);
 			pthread_mutex_lock(philo->share->print_protect);
-			printf("every philosopher have eaten %lld times\n", philo->share->data.nbr_time_must_eat);
+			printf("every philosopher have eaten %lld times\n", \
+				philo->share->data.nbr_time_must_eat);
 			pthread_mutex_unlock(philo->share->print_protect);
 		}
 		philo = ft_check_value(philo);

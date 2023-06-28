@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setups.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:08:34 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 12:51:33 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:23:03 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	*ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s)
+void	ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s)
 {
 	philo->balise = 0;
 	philo->id = id;
@@ -29,9 +29,29 @@ t_share	*ft_setup_share(t_data data)
 	t_share	*ret;
 
 	ret = malloc(sizeof(t_share));
+	if (!ret)
+		return (NULL);
 	ret->dead = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (!ret->dead)
+	{
+		free(ret);
+		return (NULL);
+	}
 	ret->print_protect = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (!ret->print_protect)
+	{
+		free(ret->dead);
+		free(ret);
+		return (NULL);
+	}
 	ret->is_dead = malloc(sizeof(int));
+	if (!ret->is_dead)
+	{
+		free(ret->dead);
+		free(ret->print_protect);
+		free(ret);
+		return (NULL);
+	}
 	ret->data = data;
 	*(ret->is_dead) = 0;
 	pthread_mutex_init(ret->dead, NULL);
@@ -41,29 +61,29 @@ t_share	*ft_setup_share(t_data data)
 
 // a controler!!
 
-char	*ft_free_setup_share(t_share *share)
+void	ft_free_setup_share(t_share *share)
 {
 	if (!share->dead)
 	{
 		free(share);
 		//pthread_mutex_destroy(share->dead);//a verifier
-		return (NULL);
+		ft_error("Error: malloc init failed\n");
 	}
-	if (!share->print_protect)
+	else if (!share->print_protect)
 	{
 		free(share->dead);
 		free(share);
 		// pthread_mutex_destroy(share->dead);//a verifier
 		// pthread_mutex_destroy(share->print_protect);//a verifier
-		return (NULL);
+		ft_error("Error: malloc init failed\n");
 	}
-	if (!share->is_dead)
+	else if (!share->is_dead)
 	{
 		free(share->dead);
 		free(share->print_protect);
 		free(share);
 		// pthread_mutex_destroy(share->dead);//a verifier
 		// pthread_mutex_destroy(share->print_protect);//a verifier
-		return (NULL);
+		ft_error("Error: malloc init failed\n");
 	}
 }

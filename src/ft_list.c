@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:19:46 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 13:55:39 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:24:33 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_philo	*ft_list_philo(int n, t_share *share)
 		return (NULL);
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
-		ft_error("Error malloc init\n");
+		ft_error("Error malloc init failed\n");
 	buff[0] = philo;
 	buff[1] = philo;
 	gettimeofday(&time, NULL);

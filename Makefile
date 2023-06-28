@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+         #
+#    By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/06/27 13:14:07 by thed6bel         ###   ########.fr        #
+#    Updated: 2023/06/28 10:18:13 by hucorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@
 
 NAME	= philo
 CC		= gcc
-#CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 #flags pendant test:
-CFLAGS	= -pthread -fsanitize=thread -g
+#CFLAGS	= -pthread -fsanitize=thread -g
 OBJ_DIR			= .objs
 
 ################################################################################

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/27 11:16:01 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:25:54 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_share
 
 typedef struct s_philo
 {
-	int				balise;//pour la fin de la liste
+	int				balise;
 	int				last_eat;
 	int				id;
 	int				count;
@@ -76,7 +76,7 @@ void	*ft_routine(void *arg);
 
 // ft_setup.c
 t_share	*ft_setup_share(t_data data);
-void	*ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s);
+void	ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s);
 
 // ft_tools.c
 void	ft_error(char *message);
