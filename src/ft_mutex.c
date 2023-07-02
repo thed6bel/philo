@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/06/28 18:50:34 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:29:27 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,37 @@
 
 int	ft_protect_check(t_philo *philo)
 {
-	int	i;
+	int		value;
 
-	i = 1;
-	pthread_mutex_lock(philo->share->dead);
-	if (*(philo->share->is_dead) == 1)
-		i = 0;
-	pthread_mutex_unlock(philo->share->dead);
-	return (i);
+	value = 1;
+	pthread_mutex_lock(philo->shared->dead);
+	if (*(philo->shared->is_dead) == 1)
+		value = 0;
+	pthread_mutex_unlock(philo->shared->dead);
+	return (value);
 }
 
-void	ft_protect_print(t_philo *philo, char *str)
+void	ft_protect_write(t_philo *philo, char *str)
 {
 	if (ft_protect_check(philo))
 	{
-		pthread_mutex_lock(philo->share->print_protect);
-		printf(str, get_time(philo->t_stp), philo->id);
-		pthread_mutex_unlock(philo->share->print_protect);
+		pthread_mutex_lock(philo->shared->write_protect);
+		printf(str, get_timestamp(philo->tmstp), philo->index);
+		pthread_mutex_unlock(philo->shared->write_protect);
 	}
 }
 
 void	ft_lock(t_philo *philo)
 {
-	if (philo->share->data.nbr_philo == 1)
-	{
-		ft_protect_print(philo, "%d %d has taken a fork\n");
-		ft_exit_and_free1philo(philo);
-	}
-	if (philo->id % 2 != 0)
+	if (philo->index % 2 != 0)
 	{
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_print(philo, "%d %d has taken a fork\n");
-		if (philo->next->balise != 1)
+		ft_protect_write(philo, "%d %d has taken a fork1\n");
+		if (philo->next->balise != 1 && philo->shared->data.nb_philo != 0)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_print(philo, "%d %d has taken a fork\n");
+		ft_protect_write(philo, "%d %d has taken a fork2\n");
 	}
 	else
 	{
@@ -57,31 +52,32 @@ void	ft_lock(t_philo *philo)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_print(philo, "%d %d has taken a fork\n");
+		ft_protect_write(philo, "%d %d has taken a fork3\n");
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_print(philo, "%d %d has taken a fork\n");
+		ft_protect_write(philo, "%d %d has taken a fork4\n");
 	}
 }
 
 void	ft_unlock(t_philo *philo)
 {
-	if (philo->id % 2 == 0 && philo->next->balise != 1)
+	printf("test\n");
+	if (philo->index % 2 == 0 && philo->next->balise != 1)
 	{
 		pthread_mutex_unlock(&(philo->fork));
 		//usleep(100);
 		pthread_mutex_unlock(&(philo->next->fork));
 	}
-	else if (philo->id % 2 != 0 && philo->next->balise != 1)
+	else if (philo->index % 2 != 0 && philo->next->balise != 1)
 	{
 		pthread_mutex_unlock(&(philo->fork));
 		pthread_mutex_unlock(&(philo->next->fork));
 	}
-	else if (philo->next->balise == 1 && philo->id % 2 != 0)
+	else if (philo->next->balise == 1 && philo->index % 2 != 0)
 	{
-		pthread_mutex_unlock(&(philo->fork));
 		pthread_mutex_unlock(&(philo->next->next->fork));
+		pthread_mutex_unlock(&(philo->fork));
 	}
-	else if (philo->next->balise == 1 && philo->id % 2 == 0)
+	else if (philo->next->balise == 1 && philo->index % 2 == 0)
 	{
 		pthread_mutex_unlock(&(philo->fork));
 		pthread_mutex_unlock(&(philo->next->next->fork));

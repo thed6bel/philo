@@ -6,81 +6,70 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 18:58:43 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:05:23 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void	ft_make_threads(t_philo *philo)
+static void	ft_thread(t_philo *philo)
 {
-	t_philo	*buffer;
+	t_philo		*buff;
 
-	buffer = philo;
-	while (buffer->balise != 1)
+	buff = philo;
+	while (buff->balise != 1)
 	{
-		pthread_create(&(buffer->thread), NULL, &ft_routine, buffer);
-		//usleep(100); arsene a ajouter un delais mais pourquoi?
-		buffer = buffer->next;
+		pthread_create(&(buff->thread), NULL, &ft_routine, buff);
+		usleep(philo->index * 50);
+		buff = buff->next;
 	}
 }
 
-void	ft_exit_and_free(t_philo *philo)
+void	ft_exit_thread(t_philo *philo)
 {
-	t_philo	*buffer;
+	t_philo		*buff;
 
-	buffer = philo;
-	while (buffer->balise != 1)
+	buff = philo;
+	while (buff->balise != 1)
 	{
-		if (!(buffer->id == 1 && buffer->next->balise == 1))
-			pthread_join(buffer->thread, NULL);
-		buffer = buffer->next;
+		if (!(buff->index == 1 && buff->next->balise == 1))
+			pthread_join(buff->thread, NULL);
+		buff = buff->next;
 	}
-	if (pthread_mutex_destroy(philo->share->print_protect) != 0)
+	if (pthread_mutex_destroy(philo->shared->write_protect) != 0)
 		ft_error("Error destroy mutex[ft_exit_and_free1]\n");
-	if (pthread_mutex_destroy(philo->share->dead) != 0)
+	if (pthread_mutex_destroy(philo->shared->dead) != 0)
 		ft_error("Error destroy mutex[ft_exit_and_free2]\n");
-	free(philo->share->is_dead);
-	free(philo->share->print_protect);
-	free(philo->share->dead);
-	free(philo->share);
+	free(philo->shared->dead);
+	free(philo->shared->write_protect);
+	free(philo->shared->is_dead);
+	free(philo->shared);
 	while (philo->balise != 1)
 	{
-		buffer = philo->next;
-		if (pthread_mutex_destroy(&philo->fork) != 0)
-			printf("Error destroy mutex[ft_exit_and_free3]\n");
-		if (pthread_mutex_destroy(&philo->count_protect) != 0)
-			printf("Error destroy mutex[ft_exit_and_free4]\n");
+		buff = philo->next;
+		// if (pthread_mutex_destroy(&(philo->fork)) != 0)
+		// 	ft_error("Error destroy mutex[ft_exit_and_free3]\n");
+		if (pthread_mutex_destroy(&(philo->count_protect)) != 0)
+			ft_error("Error destroy mutex[ft_exit_and_free4]\n");
 		free(philo);
-		philo = buffer;
+		philo = buff;
 	}
 	free(philo);
-}
-
-void	ft_exit_and_free1philo(t_philo *philo)
-{
-	if (pthread_mutex_destroy(&philo->fork) != 0)
-		printf("Error destroy mutex[ft_exit_and_free1philo1]\n");
-	free(philo->share);
-	if (pthread_mutex_destroy(&philo->count_protect) != 0)
-		printf("Error destroy mutex[ft_exit_and_free1philo3]\n");
-	free(philo);
-	exit(0);
 }
 
 void	ft_philosopher(t_data data)
 {
-	t_philo			*philo;
-	t_philo			*buff;
-	t_share			*share;
+	t_philo		*philo;
+	t_philo		*buff;
+	t_share		*shared;
 
-	share = ft_setup_share(data);
-	philo = ft_list_philo(data.nbr_philo, share);
+	shared = ft_set_shared(data);
+	philo = ft_set_list(data.nb_philo, shared);
 	if (philo == NULL)
-		ft_error("Error\n");
+		return ;
 	buff = philo;
-	if (data.nbr_philo >= 1)
-		ft_make_threads(buff);
+	if (data.nb_philo >= 1)
+		ft_thread(buff);
 	ft_monitoring(buff);
-	ft_exit_and_free(philo);
+	ft_exit_thread(philo);
 }

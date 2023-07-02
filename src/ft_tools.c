@@ -3,47 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 10:29:07 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/02 18:33:32 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	ft_error(char *message)
+void	ft_error(char *str)
 {
-	write (2, message, ft_strlen(message));
+	write(2, str, ft_strlen(str));
 	exit (1);
 }
 
-long	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
-	long	i;
+	int		i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (str == NULL)
+		return (0);
+	while (str[i])
 		i++;
 	return (i);
 }
 
-int	get_time(struct timeval start)
+int	get_timestamp(struct timeval start)
 {
-	int				time;
+	int				timestamp;
 	struct timeval	end;
 
 	gettimeofday(&end, NULL);
-	time = ((end.tv_sec - start.tv_sec)
+	timestamp = ((end.tv_sec - start.tv_sec)
 			+ 1e-6 * (end.tv_usec - start.tv_usec)) * 1000;
-	return (time);
+	return (timestamp);
 }
 
-int	ft_atoi2(const char *nptr, long long int *n)
+int	ft_atoi2(const char *nptr, int *n)
 {
 	int						i;
 	int						signe;
-	unsigned long long int	nbr;
+	int						nbr;
 
 	i = 0;
 	signe = 1;
@@ -61,9 +63,37 @@ int	ft_atoi2(const char *nptr, long long int *n)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		nbr = nptr[i++] - '0' + (nbr * 10);
-	if (((nbr > 9223372036854775808ULL) && signe == -1) || \
-		((nbr > 9223372036854775807) && signe == 1))
+	if ((((unsigned long long)nbr > 9223372036854775808ULL) && signe == -1) || \
+		(((unsigned long long)nbr > 9223372036854775807) && signe == 1))
 		return (0);
-	*n = (long long int)(nbr * signe);
+	*n = ((int)nbr * signe);
+	return (1);
+}
+
+int	ft_ctrl_arg(char **argv, t_data data)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
+				return (0);
+			if (data.nb_philo > INT_MAX || data.time_dead > 2147483647
+				|| data.time_eat > INT_MAX || data.time_sleep > INT_MAX \
+				|| data.need_eat > INT_MAX)
+				return (0);
+			if (data.nb_philo <= 0 || data.time_dead <= -1
+				|| data.time_eat <= -1 || data.time_sleep <= -1 || \
+				(!data.need_eat && data.need_eat <= 0))
+				return (0);
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }

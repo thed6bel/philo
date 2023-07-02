@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setups.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 11:08:34 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/06/28 10:23:03 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/02 15:21:56 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	ft_setup_philo(t_philo *philo, int id, struct timeval t, t_share *s)
+void	ft_set_philo(t_philo *philo, int index, struct timeval time, t_share *s)
 {
 	philo->balise = 0;
-	philo->id = id;
-	philo->share = s;
-	philo->t_stp = t;
+	philo->index = index;
 	philo->count = 0;
-	philo->last_eat = 0;
-	pthread_mutex_init(&philo->fork, NULL);
-	pthread_mutex_init(&philo->count_protect, NULL);
+	philo->last_meal = 0;
+	philo->shared = s;
+	philo->tmstp = time;
+	pthread_mutex_init(&(philo->fork), NULL);
+	pthread_mutex_init(&(philo->count_protect), NULL);
 }
 
-t_share	*ft_setup_share(t_data data)
+t_share	*ft_set_shared(t_data arg)
 {
 	t_share	*ret;
 
@@ -37,8 +37,8 @@ t_share	*ft_setup_share(t_data data)
 		free(ret);
 		return (NULL);
 	}
-	ret->print_protect = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	if (!ret->print_protect)
+	ret->write_protect = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (!ret->write_protect)
 	{
 		free(ret->dead);
 		free(ret);
@@ -48,14 +48,14 @@ t_share	*ft_setup_share(t_data data)
 	if (!ret->is_dead)
 	{
 		free(ret->dead);
-		free(ret->print_protect);
+		free(ret->write_protect);
 		free(ret);
 		return (NULL);
 	}
-	ret->data = data;
+	ret->data = arg;
 	*(ret->is_dead) = 0;
 	pthread_mutex_init(ret->dead, NULL);
-	pthread_mutex_init(ret->print_protect, NULL);
+	pthread_mutex_init(ret->write_protect, NULL);
 	return (ret);
 }
 
@@ -69,7 +69,7 @@ void	ft_free_setup_share(t_share *share)
 		//pthread_mutex_destroy(share->dead);//a verifier
 		ft_error("Error: malloc init failed\n");
 	}
-	else if (!share->print_protect)
+	else if (!share->write_protect)
 	{
 		free(share->dead);
 		free(share);
@@ -80,7 +80,7 @@ void	ft_free_setup_share(t_share *share)
 	else if (!share->is_dead)
 	{
 		free(share->dead);
-		free(share->print_protect);
+		free(share->write_protect);
 		free(share);
 		// pthread_mutex_destroy(share->dead);//a verifier
 		// pthread_mutex_destroy(share->print_protect);//a verifier
