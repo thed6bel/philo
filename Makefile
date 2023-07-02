@@ -6,7 +6,7 @@
 #    By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/07/02 13:49:56 by thed6bel         ###   ########.fr        #
+#    Updated: 2023/07/02 19:01:51 by thed6bel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME	= philo
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS	= -Wall -Wextra -Werror -pthread
 #flags pendant test:
 #CFLAGS	= -pthread -fsanitize=thread -g
 OBJ_DIR			= .objs

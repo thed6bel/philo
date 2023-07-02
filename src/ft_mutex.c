@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/07/02 16:29:27 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:44:13 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	ft_lock(t_philo *philo)
 
 void	ft_unlock(t_philo *philo)
 {
-	printf("test\n");
+	//printf("test\n");
 	if (philo->index % 2 == 0 && philo->next->balise != 1)
 	{
 		pthread_mutex_unlock(&(philo->fork));
-		//usleep(100);
+		usleep(100);
 		pthread_mutex_unlock(&(philo->next->fork));
 	}
 	else if (philo->index % 2 != 0 && philo->next->balise != 1)

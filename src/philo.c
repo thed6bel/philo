@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 18:05:23 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:12:59 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static void	ft_thread(t_philo *philo)
 void	ft_exit_thread(t_philo *philo)
 {
 	t_philo		*buff;
+	int			n;
 
 	buff = philo;
+	n = philo->shared->data.nb_philo;
 	while (buff->balise != 1)
 	{
 		if (!(buff->index == 1 && buff->next->balise == 1))
@@ -47,8 +49,10 @@ void	ft_exit_thread(t_philo *philo)
 	while (philo->balise != 1)
 	{
 		buff = philo->next;
-		// if (pthread_mutex_destroy(&(philo->fork)) != 0)
-		// 	ft_error("Error destroy mutex[ft_exit_and_free3]\n");
+		if (n == 1)
+			pthread_mutex_unlock(&(philo->fork));
+		if (pthread_mutex_destroy(&(philo->fork)) != 0)
+			ft_error("Error destroy mutex[ft_exit_and_free3]\n");
 		if (pthread_mutex_destroy(&(philo->count_protect)) != 0)
 			ft_error("Error destroy mutex[ft_exit_and_free4]\n");
 		free(philo);

@@ -6,7 +6,7 @@
 /*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 17:55:25 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:17:06 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	*ft_timer(t_philo *philo, long long time)
 void	ft_eating(t_philo *philo)
 {
 	ft_lock(philo);
-	printf("test ft_eating\n");
+	//printf("test ft_eating\n");
+	usleep(100);
 	pthread_mutex_lock(philo->shared->dead);
 	philo->last_meal = get_timestamp(philo->tmstp);
 	pthread_mutex_unlock(philo->shared->dead);
