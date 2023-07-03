@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 19:17:06 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:05:04 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void	*ft_timer(t_philo *philo, long long time)
+static void	*ft_timer(t_philo *philo, unsigned int time)
 {
-	unsigned long long	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < time && ft_protect_check(philo))
 	{
-		usleep(1000);
+		usleep(20000);
 		pthread_mutex_lock(philo->shared->dead);
 		if (*(philo->shared->is_dead) == 1)
 		{
@@ -27,24 +27,26 @@ static void	*ft_timer(t_philo *philo, long long time)
 			return (NULL);
 		}
 		pthread_mutex_unlock(philo->shared->dead);
-		i += 1000;
+		i += 20000;
 	}
+	return (NULL);
 }
 
 void	ft_eating(t_philo *philo)
 {
 	ft_lock(philo);
 	//printf("test ft_eating\n");
-	usleep(100);
-	pthread_mutex_lock(philo->shared->dead);
+	//usleep(100);
+	//pthread_mutex_lock(philo->shared->dead);
 	philo->last_meal = get_timestamp(philo->tmstp);
-	pthread_mutex_unlock(philo->shared->dead);
+	//pthread_mutex_unlock(philo->shared->dead);
 	ft_protect_write(philo, "%d %d is eating\n");
 	pthread_mutex_lock(&(philo->count_protect));
 	philo->count += 1;
 	pthread_mutex_unlock(&(philo->count_protect));
-	if (ft_protect_check(philo))
-		usleep(philo->shared->data.time_eat * 1000);
+	//if (ft_protect_check(philo))
+	//usleep(philo->shared->data.time_eat * 1000);
+	ft_usleep(philo->shared->data.time_eat + 1);
 	ft_unlock(philo);
 }
 
@@ -56,7 +58,8 @@ void	ft_sleeping(t_philo *philo)
 		if (philo->shared->data.time_sleep == 0)
 			usleep(0);
 		else
-			usleep(philo->shared->data.time_sleep * 1000);
+			//usleep(philo->shared->data.time_sleep * 1000);
+			ft_usleep(philo->shared->data.time_sleep + 1);
 	}
 }
 
@@ -76,16 +79,16 @@ void	*ft_routine(void *philo)
 
 	buff = (t_philo *)philo;
 	if (buff->index % 2 == 0)
-		usleep(buff->shared->data.time_eat * 100);
+		usleep((buff->shared->data.time_eat * 100) / 2);
 	while (ft_protect_check(buff))
 	{
-		if (ft_protect_check(philo))
-			ft_eating(buff);
-		if (ft_protect_check(philo))
-			ft_sleeping(buff);
-		if (ft_protect_check(philo))
-			ft_thinking(buff);
-		usleep(2000);
+		//if (ft_protect_check(philo))
+		ft_eating(buff);
+		//if (ft_protect_check(philo))
+		ft_sleeping(buff);
+		//if (ft_protect_check(philo))
+		ft_thinking(buff);
+		//usleep(100);
 	}
 	return (philo);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+         #
+#    By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/07/02 19:01:51 by thed6bel         ###   ########.fr        #
+#    Updated: 2023/07/03 10:58:56 by hucorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	= 	./src/main.c \
 			./src/ft_setups.c \
 			./src/ft_tools.c \
 			./src/philo.c \
+			./src/ft_time.c \
 
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 

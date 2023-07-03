@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:31:43 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 18:33:32 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:44:23 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,22 @@ int	ft_strlen(char *str)
 
 int	get_timestamp(struct timeval start)
 {
-	int				timestamp;
-	struct timeval	end;
+	struct timeval	new_time;
+	int				seconds;
+	int				micro_seconds;
 
-	gettimeofday(&end, NULL);
-	timestamp = ((end.tv_sec - start.tv_sec)
-			+ 1e-6 * (end.tv_usec - start.tv_usec)) * 1000;
-	return (timestamp);
+	if (gettimeofday(&new_time, NULL) != 0)
+		return (-1);
+	seconds = new_time.tv_sec - start.tv_sec;
+	if (new_time.tv_usec < start.tv_usec)
+	{
+		seconds -= 1;
+		micro_seconds
+			= 1000000 - start.tv_usec + new_time.tv_usec;
+	}
+	else
+		micro_seconds = new_time.tv_usec - start.tv_usec;
+	return ((seconds * 1000) + micro_seconds / 1000);
 }
 
 int	ft_atoi2(const char *nptr, int *n)
