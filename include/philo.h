@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/04 14:39:38 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:16:52 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void	ft_exit_thread(t_philo *philo);
 void	ft_exit_and_free1philo(t_philo *philo);
 
 // ft_time.c
-int			ft_usleep(useconds_t usec);
+int		ft_usleep(useconds_t usec);
 
 #endif

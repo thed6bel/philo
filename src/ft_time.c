@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_time.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 10:54:35 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/04 14:24:23 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:50:31 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static useconds_t	get_time(void)
+useconds_t	get_time(void)
 {
 	struct timeval	t;
 

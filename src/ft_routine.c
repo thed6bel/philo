@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 10:02:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/04 14:13:30 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:00:48 by thed6bel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_sleeping(t_philo *philo)
 	if (ft_protect_check(philo))
 	{
 		if (philo->shared->data.time_sleep == 0)
-			usleep(0);
+			return ;
 		else
 			ft_usleep(philo->shared->data.time_sleep);
 	}
@@ -64,9 +64,11 @@ void	ft_thinking(t_philo *philo)
 	ft_protect_write(philo, "%d %d is thinking\n");
 	if (philo->index % 2 != 0 && philo->shared->data.time_eat
 		>= philo->shared->data.time_sleep)
-		usleep(((philo->shared->data.time_eat - \
-			philo->shared->data.time_sleep + 1)
-				* 1000) / 3);
+		ft_usleep((philo->shared->data.time_eat - \
+			philo->shared->data.time_sleep + 1));
+		// usleep(((philo->shared->data.time_eat - \
+		// 	philo->shared->data.time_sleep + 1)
+		// 		* 1000) / 2);
 }
 
 void	*ft_routine(void *philo)
@@ -75,7 +77,8 @@ void	*ft_routine(void *philo)
 
 	buff = (t_philo *)philo;
 	if (buff->index % 2 == 0)
-		usleep((buff->shared->data.time_eat * 10) / 2);
+		ft_usleep((buff->shared->data.time_eat) / 2);
+		//usleep((buff->shared->data.time_eat * 10) / 2);
 	while (ft_protect_check(buff))
 	{
 		if (ft_protect_check(philo))
@@ -84,7 +87,7 @@ void	*ft_routine(void *philo)
 			ft_sleeping(buff);
 		if (ft_protect_check(philo))
 			ft_thinking(buff);
-		usleep(100);
+		//usleep(100);
 	}
 	return (philo);
 }
