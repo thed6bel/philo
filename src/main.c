@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:36:23 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 15:06:43 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:53:58 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int	main(int argc, char **argv)
 			&philo_data.time_eat)) || !(ft_atoi2(argv[4], \
 			&philo_data.time_sleep)))
 		{
-			ft_error("Invalid argument1\n");
+			ft_error("Invalid argument\n");
 		}
 		if (argc == 6 && !(ft_atoi2(argv[5], &philo_data.need_eat)))
-			ft_error("Invalid argument2\n");
+			ft_error("Invalid argument\n");
 		if (!ft_ctrl_arg(argv, philo_data))
-			ft_error("Invalide argument3\n");
+			ft_error("Invalide argument\n");
 		else
 			ft_philosopher(philo_data);
 	}
 	else
-		ft_error("Invalid argument4\n");
+		ft_error("Invalid argument\n");
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:27:31 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 18:44:04 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:14:25 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ void	ft_monitoring(t_philo *philo)
 			pthread_mutex_lock(philo->shared->dead);
 			*(start->shared->is_dead) = 1;
 			pthread_mutex_unlock(philo->shared->dead);
-			usleep(2000);
+			usleep(100);
 			pthread_mutex_lock(philo->shared->write_protect);
 			printf("every philosopher have eaten %d times\n", \
 				philo->shared->data.need_eat);
 			pthread_mutex_unlock(philo->shared->write_protect);
-			//break ;
 		}
 		philo = ft_check_value(philo);
 		if (philo->balise == 1)

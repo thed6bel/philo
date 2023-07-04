@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/03 10:57:55 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:39:38 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	*ft_routine(void *philo);
 // ft_setup.c
 t_share	*ft_set_shared(t_data arg);
 void	ft_set_philo(t_philo *philo, int index, struct timeval time, t_share *s);
+void	ft_free_setup_share(t_share *share);
 
 // ft_tools.c
 void	ft_error(char *message);
@@ -86,7 +87,7 @@ void	ft_philosopher(t_data data);
 void	ft_exit_thread(t_philo *philo);
 void	ft_exit_and_free1philo(t_philo *philo);
 
+// ft_time.c
 int			ft_usleep(useconds_t usec);
-useconds_t  get_time(void);
 
 #endif

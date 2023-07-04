@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:12:01 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/02 19:12:59 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:58:47 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,19 @@ static void	ft_thread(t_philo *philo)
 	}
 }
 
+static void	ft_free_exit_thread(t_philo *philo)
+{
+	free(philo->shared->dead);
+	free(philo->shared->write_protect);
+	free(philo->shared->is_dead);
+	free(philo->shared);
+}
+
 void	ft_exit_thread(t_philo *philo)
 {
 	t_philo		*buff;
-	int			n;
 
 	buff = philo;
-	n = philo->shared->data.nb_philo;
 	while (buff->balise != 1)
 	{
 		if (!(buff->index == 1 && buff->next->balise == 1))
@@ -39,22 +45,15 @@ void	ft_exit_thread(t_philo *philo)
 		buff = buff->next;
 	}
 	if (pthread_mutex_destroy(philo->shared->write_protect) != 0)
-		ft_error("Error destroy mutex[ft_exit_and_free1]\n");
+		ft_error("Error destroy mutex\n");
 	if (pthread_mutex_destroy(philo->shared->dead) != 0)
-		ft_error("Error destroy mutex[ft_exit_and_free2]\n");
-	free(philo->shared->dead);
-	free(philo->shared->write_protect);
-	free(philo->shared->is_dead);
-	free(philo->shared);
+		ft_error("Error destroy mutex\n");
+	ft_free_exit_thread(philo);
 	while (philo->balise != 1)
 	{
 		buff = philo->next;
-		if (n == 1)
-			pthread_mutex_unlock(&(philo->fork));
-		if (pthread_mutex_destroy(&(philo->fork)) != 0)
-			ft_error("Error destroy mutex[ft_exit_and_free3]\n");
 		if (pthread_mutex_destroy(&(philo->count_protect)) != 0)
-			ft_error("Error destroy mutex[ft_exit_and_free4]\n");
+			ft_error("Error destroy mutex\n");
 		free(philo);
 		philo = buff;
 	}

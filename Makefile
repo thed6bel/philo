@@ -6,7 +6,7 @@
 #    By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 09:27:30 by hucorrei          #+#    #+#              #
-#    Updated: 2023/07/03 11:54:35 by hucorrei         ###   ########.fr        #
+#    Updated: 2023/07/04 14:54:43 by hucorrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME	= philo
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS	= -Wall -Wextra -Werror -pthread 
 #flags pendant test:
 #CFLAGS	= -pthread -fsanitize=thread -g
 OBJ_DIR			= .objs

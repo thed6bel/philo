@@ -6,7 +6,7 @@
 /*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:58:35 by thed6bel          #+#    #+#             */
-/*   Updated: 2023/07/03 10:29:09 by hucorrei         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:44:07 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	ft_lock(t_philo *philo)
 	if (philo->index % 2 != 0)
 	{
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_write(philo, "%d %d has taken a fork1\n");
+		ft_protect_write(philo, "%d %d has taken a fork\n");
 		if (philo->next->balise != 1 && philo->shared->data.nb_philo != 0)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_write(philo, "%d %d has taken a fork2\n");
+		ft_protect_write(philo, "%d %d has taken a fork\n");
 	}
 	else
 	{
@@ -52,15 +52,14 @@ void	ft_lock(t_philo *philo)
 			pthread_mutex_lock(&(philo->next->fork));
 		else
 			pthread_mutex_lock(&(philo->next->next->fork));
-		ft_protect_write(philo, "%d %d has taken a fork3\n");
+		ft_protect_write(philo, "%d %d has taken a fork\n");
 		pthread_mutex_lock(&(philo->fork));
-		ft_protect_write(philo, "%d %d has taken a fork4\n");
+		ft_protect_write(philo, "%d %d has taken a fork\n");
 	}
 }
 
 void	ft_unlock(t_philo *philo)
 {
-	//printf("test\n");
 	if (philo->index % 2 == 0 && philo->next->balise != 1)
 	{
 		pthread_mutex_unlock(&(philo->fork));
