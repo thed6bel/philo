@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thed6bel <thed6bel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hucorrei <hucorrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 09:26:14 by hucorrei          #+#    #+#             */
-/*   Updated: 2023/07/04 19:16:52 by thed6bel         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:04:16 by hucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,12 @@ void	*ft_routine(void *philo);
 
 // ft_setup.c
 t_share	*ft_set_shared(t_data arg);
-void	ft_set_philo(t_philo *philo, int index, struct timeval time, t_share *s);
+void	ft_set_philo(t_philo *philo, int index, \
+		struct timeval time, t_share *s);
 void	ft_free_setup_share(t_share *share);
+
+// ft_time.c
+int		ft_usleep(useconds_t usec);
 
 // ft_tools.c
 void	ft_error(char *message);
@@ -85,9 +89,5 @@ int		ft_ctrl_arg(char **argv, t_data data);
 // philo.c
 void	ft_philosopher(t_data data);
 void	ft_exit_thread(t_philo *philo);
-void	ft_exit_and_free1philo(t_philo *philo);
-
-// ft_time.c
-int		ft_usleep(useconds_t usec);
 
 #endif
